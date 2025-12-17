@@ -1,0 +1,115 @@
+
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Nudel Scoreboard">
+    <meta name="author" content="Lena Buchmann">
+    <title>Wandernudeln</title>
+
+    <!-- Styles -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Favicons, theme color, etc. -->
+</head>
+<body>
+    <div class = "wrap">
+    <div class = "grööd stampfree">
+        <h1 style= "grid-area: header" id="hero-title">Das Wandernudel-Scoreboard</h1>
+    <div class="container stampfree">
+    
+<table id="score" class="charts-css column data-spacing-15">
+<!--     <caption> Datentabelle der Nudeln </caption>
+ --><thead>
+	<tr>
+        <th scope="col">Person</th>
+        <th scope="col">Anzahl Stempel</th>
+	</tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th scope="row"> Lena </th>
+		<td style="--size: 0;">
+        <img class="person" data-id="Lena" style="position: absolute; z-index: 2;" src="images/personen/Lena.png" alt="Lena">
+         <div class="berg"></div>
+        <span class="data"></span>
+        </td>
+	</tr>
+    <tr>
+        <th scope="row"> Thorben </th>
+		<td style="--size: 0;">
+        <img class="person" data-id="Thorben" src="images/personen/Thorben.png" alt="Thorben">
+        <span class="data"> </span> </td>
+    </tr>
+
+    <tr>
+        <th scope="row"> Jessie </th>
+        <td style="--size: 0;">
+        <img class="person" data-id="Jessie" id="Jessie" src="images/personen/Jessie.png" alt="Jessie">
+        <span class="data">  </span></td>        
+    </tr>
+
+    <tr>
+        <th scope="row"> Jan</th>
+        <td style="--size: 0;">
+        <img class="person" data-id="Jan" src="images/personen/Jan.png" alt="Jan">
+        <span class="data"> </span></td>
+    </tr>
+</tbody>
+</table>
+</div>
+    <div class = "right">
+        <section id="hero" aria-labelledby="hero-title">
+<p id ="flavor">Die vier Nudeln sind auf ihrer Quest zum Kaiser*innenstatus. 
+                Auf dieser Reise fragt man sich schon mal: Wie weit bin ich überhaupt schon
+                gekommen? Wie viele Stempel brauche ich noch? Und warum führe ich 
+                die Rangliste eigentlich nicht an? Oder tue ich das doch? 
+                Das Wandernudel-Scoreboard hilft dir, den Überblick zu behalten.</p>
+
+           <label for="metrik">Nach welcher Metrik möchtest du filtern?:</label>
+ <div class="filter">          
+<select name="----Metrik----" id="metrik" class="btn-purple">
+    <option value="hide" disabled selected> ------------Metrik------------ </option>
+    <option value="stempelzahl">Anzahl der Stempel</option>
+    <option value="streak">Längste Streak</option>
+    <option value="neg_streak">Längste negative Streak</option>
+ 
+</select>
+<button id="submitBtn" class="btn-purple">Auswählen</button>
+</div>
+
+        </section>
+
+        <div id = "leaderboard" class="btn-purple">
+        <h3>Leader Board</h3>
+        <p id="leaderStempel"></p>
+        <p id="leaderStreak"></p>
+        <p id="leaderNegStreak"></p>
+    </div></div>
+</div>
+
+
+</div>
+
+<div id="nudelbox" class="stampfree" role="button" tabindex="0" aria-pressed="false" aria-label="Nudelstempelbox öffnen oder schließen">
+  <img id="nudelbox-img" src="images/kasten_geschlossen.png" alt="Nudelstempelbox">
+</div>
+
+
+	    <footer role="contentinfo">
+        <p>&copy; <span id="year"></span> Lena Buchmann</p>
+        <!-- links, credits -->
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // small inline helpers
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script src="js/script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+</body>
+</html>
