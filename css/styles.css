@@ -1,0 +1,343 @@
+
+* {
+  box-sizing: border-box;
+}
+
+.wrap{
+ position: relative;
+padding: 2vw; /* Abstand nach außen */
+}
+
+.wrap::before {
+  content: "";
+  position: absolute;
+  top: 1vw;      /* Abstand oben */
+  left: 0;       /* links bündig, kann auch angepasst werden */
+  right: 2vw;    /* Abstand rechts */
+  bottom: 0;     /* unten bündig, kann angepasst werden */
+  background-image: url(../images/Hintergründe/Flieder.png);
+  background-size: 2000px auto;
+  border-radius: 2vw;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  z-index: -1;
+}
+
+.grööd {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "left right";
+    grid-template-columns: 2fr 1fr; 
+    gap:1vw;
+}
+
+.container{
+    display: flex; 
+    flex-direction: row;
+    background-image: url(../images/Hintergründe/blaau.png);
+    background-size: auto;
+    padding: 10px;
+    padding-top: 10vw;
+    font-family: monospace;
+    justify-content: center; /*space-evenly*/
+    align-items: flex-end;
+    width: 100%;
+    height: 35vw;
+    position: relative;
+    grid-area: left; 
+    border-radius: 16px;
+    
+
+}
+
+.right{
+    grid-area: right; 
+    padding-left: 1vw;
+  width: 100%;
+    word-wrap: break-word;
+  overflow-wrap: break-word;
+
+}
+
+#score.column  {
+    top: 5vw;
+}
+
+/* zahl soll beim hovern erscheinen */
+#score.column td .data {
+    display: inline-block;       /* nötig für transform */
+    transform: scale(0);         /* standardmäßig unsichtbar */
+    transition: transform 0.6s;
+    color: white;
+    font-family: monospace;
+    margin-bottom: 0.5em;
+    font-size:xx-large;
+    
+}
+
+#score.column td:hover .data {
+    transform: scale(1);         /* beim Hover sichtbar */
+}
+
+/* Animation */
+#score.column tbody td {
+    position: relative;
+  background-image: url(../images/Hintergründe/blau.png);
+}
+
+
+@keyframes rise{
+    0% {transform: translateY(100); }
+    100% {transform: translateY(0); }
+}
+
+#score.column td .person {
+  position: absolute;
+  bottom: 100%;
+  left: 2vw;
+  transform-origin: bottom;
+  animation: rise 400ms ease;
+  width: 4vw;
+  pointer-events: auto; /* allow hover and keyboard focus */
+  cursor: pointer;
+  transition: transform 220ms ease, filter 220ms ease, box-shadow 220ms ease;
+}
+
+#score.column td .person:hover,
+#score.column td .person:focus {
+  filter: drop-shadow(0 0 12px rgba(150, 42, 226, 0.85)); /* purple glow */
+  transform: translateY(-0.4rem) scale(1.03);
+  outline: none;
+  box-shadow: 0 6px 18px rgba(106,13,173,0.12);
+}
+
+#score.column td .person:focus {
+  /* ensure keyboard focus is visible */
+  box-shadow: 0 0 0 4px rgba(106,13,173,0.12);
+}
+
+#score.column td .person#Jessie{
+  width:5vw;
+}
+
+#score.column td .berg {
+    position: absolute;
+    bottom:0vw;
+    left: 0;
+    right: 0;
+    height: auto;
+    
+   
+    pointer-events: none; 
+
+}
+
+#hero{
+    width: 50vw
+}
+
+h1{
+    font-family: monospace;
+}
+
+.item {
+  flex-basis: auto; /* default auto */
+  width: 25%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+
+.bar {
+    background-color: cadetblue;
+    width: 90%;
+    height: 50%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.person img,
+.bar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: fill; /* oder 'cover', je nach gewünschter Darstellung */
+}
+
+  .stempel {
+            position: absolute;
+            width: 10vw;
+            height: 10vw;
+            pointer-events: none; /* verhindert, dass der Stempel selbst Klicks blockiert */
+            transform: translate(-50%, -50%); /* zentriert das Bild auf den Klick */
+        }
+body {
+            margin: 0;
+            height: 100vh;
+            position: relative;
+            font-family: monospace;
+            background-image: url(../images/paper.jpg);
+            background-position: top left;
+            background-size: auto;
+            background-attachment: fixed;
+            background-repeat: repeat;
+            padding-left: 2vw;
+            
+        }
+#nudelstempel {
+    width: 10vw;
+    height: 10vw;
+}
+
+.person_wrap {
+    width: 90vw;
+    height: 100vh;
+    background-image: url('../images/Hintergründe/steckbrief.png');
+    background-size: contain;      /* Bild an Fläche anpassen */
+    background-position: center 20px; /* Bild zentrieren */
+    color: black;                /* Schriftfarbe anpassen */
+    background-repeat: no-repeat;
+    overflow: auto;
+  }
+
+/* Titel im Bild exakt platzieren */
+.person_wrap .title {
+    position: absolute;
+    top: 6.5vh;                         /* vertikale Position im Bild */
+    left: 41vw;                        /* horizontale Position */
+    margin: 0;
+    color: black;
+    /* automatische Skalierung */
+    font-size: clamp(16px, 4vw, 100px);
+    /* 16px Mindestgröße, orientiert sich an der Fensterbreite, max 32px */
+}
+
+.person_wrap .text {
+    position: absolute;
+    width: 43vw;
+    top: 12vw;                         /* vertikale Position im Bild */
+    left: 37vw;                        /* horizontale Position */
+    margin: 0;
+    color: black;
+    /* automatische Skalierung */
+    font-size: clamp(10px, 1.5vw, 32px);
+    /* 16px Mindestgröße, orientiert sich an der Fensterbreite, max 32px */
+}
+
+.person_wrap .person{
+  width: 15vw;
+  position: absolute;
+  top: 3.7vw;
+  left: 9.2vw;
+  display: inline-block;
+}
+
+
+#Turbothorbi{
+  top:2.3vw;
+  width:14vw;
+  left: 9.8vw
+}
+
+#jessieli{
+  width:18vw;
+  top:5vw;
+  left:8.7vw
+ 
+}
+
+#btn-purple_id {
+  position: absolute;
+  left: 37.5vw;
+  top: 39vw;
+
+}
+
+
+
+.btn-purple {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #6a0dad;        /* kräftiges Lila */
+    color: white;
+    text-decoration: none;
+    font-family: monospace;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: background-color 0.2s, transform 0.2s;
+  }
+
+#metrik,
+#submitBtn{
+  position: relative;
+}
+
+.filter {
+    display: flex;
+    flex-direction: row;  /* Select and Button side by side */
+    gap: 0.5rem;             /* Abstand zwischen den Elementen */
+    margin-bottom: 1rem;     /* Abstand zum Text */
+    align-items: flex-start; /* oben bündig ausrichten */
+    position: relative;      /* sicherstellen, dass keine absolute Positionierung greift */
+    z-index: auto;           /* keine Überlagerung */
+}
+
+/* Override block display for hero selects/buttons inside .filter so they appear inline and align at top */
+.filter select,
+.filter button {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: top;
+    padding: 12px 24px; /* gleiche Innenabstände für bündige Kanten */
+    line-height: normal;
+    box-sizing: border-box;
+    border: white;
+}
+
+
+
+#btn-purple_id:hover {
+    background-color: #8b26e0;        /* etwas helleres Lila beim Hover */
+    transform: translateY(-2px);       /* leichter Hover-Effekt */
+}
+
+#btn-purple_id:active {
+    transform: scale(0.97);            /* kleiner „Klick“-Effekt */
+}
+
+#leaderboard {
+  width: 20vw;
+}
+#nudelbox-img{    
+    position: absolute;  /* aus dem Grid genommen */
+    top: 20vw;           /* manuell positionieren */
+    left:73vw;         /* manuell positionieren */
+    width: 25vw;        /* gewünschte Größe */
+    z-index: 1000;       /* über anderen Elementen */
+    cursor: pointer; /* optional, damit Klicks durchfallen */
+
+}
+
+
+.flavour{
+  top:20vw
+}
+
+#hero label,
+#hero select,
+#hero button {
+    display: block;       /* sorgt dafür, dass jedes Element untereinander steht */
+    margin-bottom: 1rem;  /* Abstand nach unten */
+}
+
+select option:checked {
+    background-color: #7b3fe4; /* gewünschte Farbe */
+    color: white;
+}
+
+
+
