@@ -18,6 +18,7 @@
     <div class = "wrap">
     <div class = "grööd stampfree">
         <h1 style= "grid-area: header" id="hero-title">Das Wandernudel-Scoreboard</h1>
+        <a href="https://docs.google.com/spreadsheets/d/1FhA-X8jAoMpTy75NShE4ynjL4sKPld-i8Cn2AQiZDIk/edit?gid=0#gid=0" target="_blank"><img src="images/nudelsticker/sauce.png" id="sosse" alt="Source"></a>
     <div class="container stampfree">
     
 <table id="score" class="charts-css column data-spacing-15">
@@ -33,7 +34,7 @@
 	<tr>
 		<th scope="row"> Lena </th>
 		<td style="--size: 0;">
-        <img class="person" data-id="Lena" style="position: absolute; z-index: 2;" src="images/personen/Lena.png" alt="Lena">
+        <img class="person" data-id="Lena" id="Lena" style="position: absolute; z-index: 2;" src="images/personen/Lena.png" alt="Lena">
          <div class="berg"></div>
         <span class="data"></span>
         </td>
@@ -41,7 +42,7 @@
     <tr>
         <th scope="row"> Thorben </th>
 		<td style="--size: 0;">
-        <img class="person" data-id="Thorben" src="images/personen/Thorben.png" alt="Thorben">
+        <img class="person" data-id="Thorben" id="Thorben" src="images/personen/Thorben.png" alt="Thorben">
         <span class="data"> </span> </td>
     </tr>
 
@@ -55,7 +56,7 @@
     <tr>
         <th scope="row"> Jan</th>
         <td style="--size: 0;">
-        <img class="person" data-id="Jan" src="images/personen/Jan.png" alt="Jan">
+        <img class="person" data-id="Jan" id="Jan" src="images/personen/Jan.png" alt="Jan">
         <span class="data"> </span></td>
     </tr>
 </tbody>
@@ -83,7 +84,7 @@
 
         </section>
 
-        <div id = "leaderboard" class="btn-purple">
+        <div class="btn-purple" id = "leaderboard" >
         <h3>Leader Board</h3>
         <p id="leaderStempel"></p>
         <p id="leaderStreak"></p>
@@ -96,6 +97,8 @@
 
 <div id="nudelbox" class="stampfree" role="button" tabindex="0" aria-pressed="false" aria-label="Nudelstempelbox öffnen oder schließen">
   <img id="nudelbox-img" src="images/kasten_geschlossen.png" alt="Nudelstempelbox">
+  <!-- Overlay link that appears when the box is open -->
+  <a id="nudelbox-link" class="nudelbox-link" href="https://nudelstempel-c5037b.gitlab.io/" target="_blank" rel="noopener" hidden aria-hidden="true">Nudelstempel</a>
 </div>
 
 
