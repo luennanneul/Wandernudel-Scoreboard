@@ -6,6 +6,7 @@
 .wrap{
  position: relative;
 padding: 2vw; /* Abstand nach außen */
+
 }
 
 .wrap::before {
@@ -99,7 +100,6 @@ padding: 2vw; /* Abstand nach außen */
   animation: rise 400ms ease;
   width: 4vw;
   pointer-events: auto; /* allow hover and keyboard focus */
-  cursor: pointer;
   transition: transform 220ms ease, filter 220ms ease, box-shadow 220ms ease;
 }
 
@@ -186,8 +186,35 @@ body {
             background-attachment: fixed;
             background-repeat: repeat;
             padding-left: 2vw;
-            
+            /* stamping cursor outside of .stampfree areas */
+            cursor: url('../images/nudelsticker/stempel.png') 16 16, auto;
         }
+
+#leaderboard{
+  cursor: url('../images/nudelsticker/cursorr.png')8 8, auto;
+}        
+       
+/* stampfree areas should use the normal cursor */
+.stampfree {
+  cursor: url('../images/nudelsticker/cursorr.png') 16 16, auto;
+}
+
+/* custom pointer cursor for interactive controls and people */
+button, a, .btn-purple, #Lena, #Thorben, #Jan, #Jessie {
+  cursor: url('../images/nudelsticker/pfeil.png') 8 8, pointer;
+}
+
+/* special cursor for the nudelbox — more specific selectors and fallbacks */
+.stampfree#nudelbox, .stampfree #nudelbox, #nudelbox, #nudelbox-img, .stampfree#nudelbox img, #nudelbox img {
+  /* try multiple cursor images and fall back to pointer */
+  cursor: url('../images/nudelsticker/hand.png') 16 16, url('../images/nudelsticker/pfeil.png') 16 16, pointer;
+  pointer-events: auto; /* ensure it reacts to hover/click */
+}
+
+      
+
+
+
 #nudelstempel {
     width: 10vw;
     height: 10vw;
@@ -234,6 +261,7 @@ body {
   top: 3.7vw;
   left: 9.2vw;
   display: inline-block;
+  cursor: url("../images/nudelsticker/cursorr.png")4 4, auto;
 }
 
 
@@ -300,7 +328,7 @@ body {
 
 
 
-#btn-purple_id:hover {
+#btn-purple_id:hover, #submitBtn:hover {
     background-color: #8b26e0;        /* etwas helleres Lila beim Hover */
     transform: translateY(-2px);       /* leichter Hover-Effekt */
 }
@@ -314,14 +342,55 @@ body {
 }
 #nudelbox-img{    
     position: absolute;  /* aus dem Grid genommen */
-    top: 20vw;           /* manuell positionieren */
+    top: 17.5vw;           /* manuell positionieren */
     left:73vw;         /* manuell positionieren */
     width: 25vw;        /* gewünschte Größe */
     z-index: 1000;       /* über anderen Elementen */
-    cursor: pointer; /* optional, damit Klicks durchfallen */
+    pointer-events: auto; /* ensure image itself receives hover */
+    cursor: inherit; /* inherit the more specific cursor above */
 
 }
+/* overlay link that appears only when the box is open (centered) */
+.nudelbox-link {
+  position: absolute;
+  top: 50%;
+  left: 85vw;
+  transform: translate(-50%, -50%) translateY(-6px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1002;
+  text-decoration: none;
+  color: #6a0dad;
+  background: rgba(106,13,173,0.06);
+  border-radius: 0.6rem;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  opacity: 0;
+  pointer-events: none;
 
+  max-width: 80%;
+  white-space: nowrap;
+}
+
+/* visible when open */
+#nudelbox.open .nudelbox-link,
+#nudelbox[aria-pressed="true"] .nudelbox-link {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) translateY(0);
+}
+
+/* hover styles */
+.nudelbox-link:hover {
+  background: rgba(106,13,173,0.12);
+  box-shadow: 0 6px 18px rgba(106,13,173,0.12);
+}
+
+/* make sure link text is accessible on small screens */
+@media (max-width: 600px) {
+  .nudelbox-link { font-size: 14px; padding: 0.5rem; }
+}
 
 .flavour{
   top:20vw
@@ -338,6 +407,15 @@ select option:checked {
     background-color: #7b3fe4; /* gewünschte Farbe */
     color: white;
 }
+
+#sosse {
+  position: absolute;
+  left: 27vw;
+  top:0vw;
+  width: 10%;
+
+}
+
 
 
 
