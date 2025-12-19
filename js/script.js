@@ -265,11 +265,36 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Accessibility
         box.setAttribute('aria-pressed', String(isOpen));
+        box.classList.toggle('open', isOpen);
+
+        // show/hide overlay link
+        const link = document.getElementById('nudelbox-link');
+        if (link) {
+            link.hidden = !isOpen;
+            link.setAttribute('aria-hidden', String(!isOpen));
+            // ensure it's focusable only when visible
+            if (isOpen) {
+                link.tabIndex = 0;
+            } else {
+                link.tabIndex = -1;
+            }
+        }
 
         console.log('Nudelbox state:', isOpen ? 'open' : 'closed');
     }
 
     box.addEventListener('click', toggleBox);
+
+    // prevent clicks on the overlay link from closing the box
+    (function(){
+        const _nudelbox_link = document.getElementById('nudelbox-link');
+        if(_nudelbox_link){
+            _nudelbox_link.addEventListener('click', function(e){ e.stopPropagation(); });
+            _nudelbox_link.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.code === 'Space' || e.key === ' ') { e.stopPropagation(); } });
+            // initially not tabbable
+            _nudelbox_link.tabIndex = -1;
+        }
+    })();
 
     // keyboard support: Enter and Space
     box.addEventListener('keydown', function(e) {
